@@ -1,0 +1,45 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Rocket Launcher §b§l[1.0.0]",
+		"description": "Adds a rocket launcher that causes a massive explosion!",
+		"uuid": "d09081ee-0ba2-4f78-adf0-7a6832abbff6",
+		"version": [
+			1,
+			0,
+			0
+		],
+		"min_engine_version": [
+			1,
+			21,
+			20
+		]
+	},
+	"modules": [
+		{
+			"type": "resources",
+			"uuid": "c100f76b-0c4e-4808-abdf-f2d378198eee",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+
+	"dependencies": [
+
+	],
+
+	"metadata": {
+		"generated_with": {
+			"blockbench_block_wizard": [
+				"1.2.1",
+				"1.2.2"
+			],
+			"blockbench_entity_wizard": [
+				"1.4.0"
+			]
+		}
+	}
+}
