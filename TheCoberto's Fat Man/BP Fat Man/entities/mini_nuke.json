@@ -19,7 +19,19 @@
       }
     },
     "component_groups": {
+      // The script explodes and removes the projectile on impact. This is a
+      // safety net that despawns it after 1 second if that ever doesn't happen.
       "spawn_item": {
+        "minecraft:timer": {
+          "looping": false,
+          "time": 1,
+          "time_down_event": {
+            "event": "thecoberto:despawn",
+            "target": "self"
+          }
+        }
+      },
+      "thecoberto:despawned": {
         "minecraft:instant_despawn": {}
       },
       "thecoberto:impact": {
@@ -41,16 +53,9 @@
               }
             ]
           }
-        },
-        "minecraft:explode": {
-          "breaks_blocks": true, // Optionally allow it to break blocks
-          "fuse_length": 0.1,
-          "fuse_lit": true,
-          "power": 20, // Increased explosion power
-          "causes_fire": false,
-          "fire_affected_by_griefing": false,
-          "destroy_affected_by_griefing": false
         }
+        // The explosion itself is made by scripts/main.js, so it can follow
+        // the /thecoberto:fatman settings.
       },
       "minecraft:player_arrow": {
         "minecraft:projectile": {
@@ -115,7 +120,6 @@
       "new:pickup_item": {
         "queue_command": {
           "command": [
-            "summon thecoberto:mini_nuke_explosive ~~~",
             "function effect/explosion"
           ]
         },
@@ -129,6 +133,11 @@
             "spawn_item",
             "thecoberto:impact"
           ]
+        }
+      },
+      "thecoberto:despawn": {
+        "add": {
+          "component_groups": [ "thecoberto:despawned" ]
         }
       },
       "minecraft:entity_spawned": {

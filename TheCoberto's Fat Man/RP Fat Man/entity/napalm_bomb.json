@@ -1,0 +1,26 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "thecoberto:napalm_bomb",
+      "materials": {
+        "default": "arrow"
+      },
+      "textures": {
+        "default": "textures/items/napalm_bomb"
+      },
+      "geometry": {
+        "default": "geometry.arrow_img"
+      },
+      "animations": {
+        "move": "animation.arrow.target_rotation"
+      },
+      "scripts": {
+        "animate": [
+          "move"
+        ]
+      },
+      "render_controllers": [ "controller.render.arrow" ]
+    }
+  }
+}

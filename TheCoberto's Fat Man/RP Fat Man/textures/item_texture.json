@@ -7,6 +7,9 @@
     },
     "mini_nuke": {
       "textures": "textures/items/mini_nuke.png"
+    },
+    "napalm_bomb": {
+      "textures": "textures/items/napalm_bomb.png"
     }
   }
 }
