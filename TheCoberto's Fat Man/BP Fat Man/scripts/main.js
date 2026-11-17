@@ -23,7 +23,7 @@ const NAPALM_BURN_SECONDS = 10;    // how long mobs and players inside the radiu
 // World settings, changed in game with /thecoberto:fatman. Both start on, like 1.0.0.
 const SETTINGS = {
   breakBlocks: { key: "thecoberto:break_blocks", label: "Explosions break blocks" },
-  startFires: { key: "thecoberto:start_fires", label: "Explosions start fires" },
+  startFires: { key: "thecoberto:start_fires", label: "Napalm Bombs start fires" },
 };
 
 function isOn(setting) {
@@ -56,13 +56,34 @@ function detonate({ projectile, dimension, location, source }) {
   };
 
   if (type === MINI_NUKE) {
-    dimension.createExplosion(location, MINI_NUKE_RADIUS, options);
+    // No fire: the nuke is all blast. Fire is the Napalm Bomb's job.
+    dimension.createExplosion(location, MINI_NUKE_RADIUS, { ...options, causesFire: false });
+    mushroomCloud(dimension, location);
     return;
   }
 
   dimension.createExplosion(location, NAPALM_BLAST_RADIUS, options);
   burnEntities(dimension, location);
   if (options.causesFire) spreadFire(dimension, location);
+}
+
+// A column of smoke and blasts that rises over a few seconds and spreads into a cap.
+function mushroomCloud(dimension, center) {
+  const STEPS = 12;
+  for (let i = 0; i < STEPS; i++) {
+    system.runTimeout(() => {
+      const y = center.y + 2 + i * 2;
+      const spread = i < STEPS - 3 ? 1.5 : 4 + (i - (STEPS - 3)) * 3; // stem, then cap
+      for (let k = 0; k < 6; k++) {
+        const a = (k / 6) * Math.PI * 2 + i;
+        const at = { x: center.x + Math.cos(a) * spread, y, z: center.z + Math.sin(a) * spread };
+        try {
+          dimension.spawnParticle(i % 3 === 0 ? "minecraft:huge_explosion_emitter" : "minecraft:large_explosion", at);
+          dimension.spawnParticle("minecraft:knockback_roar_particle", at);
+        } catch {} // Unloaded chunk or above build height.
+      }
+    }, i * 4);
+  }
 }
 
 // Everything alive near the blast catches fire, even with fires turned off,
