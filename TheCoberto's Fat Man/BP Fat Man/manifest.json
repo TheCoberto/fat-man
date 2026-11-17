@@ -1,40 +1,40 @@
 {
 	"format_version": 2,
 	"header": {
-		"name": "Rocket Launcher §b§l[1.0.0]",
-		"description": "Adds a rocket launcher that causes a massive explosion!",
-		"uuid": "7f72bd46-e063-4151-896b-fd3b05ef6a65",
-		"version": [
-			1,
-			0,
-			0
-		],
-		"min_engine_version": [
-			1,
-			21,
-			20
-		]
+		"name": "Rocket Launcher §7§l[1.1.0]",
+		"description": "Adds a rocket launcher with Mini-Nukes and Napalm Bombs! \n§bMCBE 1.21.100+",
+		"uuid": "8eca0737-fc2a-4642-83d8-6f29fa093963",
+		"version": [ 1, 1, 0 ],
+		"min_engine_version": [ 1, 21, 100 ]
 	},
 	"modules": [
 		{
 			"description": "Behavior",
-			"version": [ 1, 0, 0 ],
-			"uuid": "7ac456ff-39b0-4122-ae12-47ad50c51a6b",
+			"version": [ 1, 1, 0 ],
+			"uuid": "da976c83-eed8-4333-ade6-2a9d0cf55260",
 			"type": "data"
+		},
+		{
+			"description": "Explosions and settings",
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/main.js",
+			"uuid": "2e2e37cf-9d54-433c-86c5-ef67b932ec12",
+			"version": [ 1, 1, 0 ]
 		}
 	],
 	"dependencies": [
 		{
-			"uuid": "d09081ee-0ba2-4f78-adf0-7a6832abbff6",
-			"version": [ 1, 0, 0 ]
+			"uuid": "dd49a291-7488-456d-96d7-be1387fbca76",
+			"version": [ 1, 1, 0 ]
 		},
 		{
 			"module_name": "@minecraft/server",
-			"version": "1.12.0"
+			"version": "2.1.0"
 		},
 		{
 			"module_name": "@minecraft/server-ui",
-			"version": "1.2.0"
+			"version": "2.0.0"
 		}
 	],
 	"metadata": {
