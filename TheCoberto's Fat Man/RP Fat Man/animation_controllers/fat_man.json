@@ -1,0 +1,30 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    // idle -> charge while the launcher is held down -> recoil when it's released.
+    "controller.animation.thecoberto.fat_man": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [
+            { "charge": "query.main_hand_item_use_duration > 0.0" }
+          ]
+        },
+        "charge": {
+          "animations": [ "charge" ],
+          "blend_transition": 0.1,
+          "transitions": [
+            { "recoil": "query.main_hand_item_use_duration <= 0.0" }
+          ]
+        },
+        "recoil": {
+          "animations": [ "recoil" ],
+          "transitions": [
+            { "charge": "query.main_hand_item_use_duration > 0.0" },
+            { "idle": "query.all_animations_finished" }
+          ]
+        }
+      }
+    }
+  }
+}

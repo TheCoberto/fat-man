@@ -30,6 +30,86 @@ function isOn(setting) {
   return world.getDynamicProperty(setting.key) !== false;
 }
 
+// --- Launcher sounds -----------------------------------------------------------
+// The launcher is a bow under the hood, so the game plays the bow "twang" when it
+// fires. That sound is stopped here and replaced with heavier launcher sounds.
+
+const FAT_MAN = "thecoberto:fat_man";
+const FULL_CHARGE_TICKS = 20; // matches max_draw_duration (1 second) in items/fat_man.json
+const BOW_SOUND = "random.bow";
+
+// Pending "fully loaded" sounds, by player id, so they can be cancelled on release.
+const chargeTimers = new Map();
+
+world.afterEvents.itemStartUse.subscribe(({ itemStack, source }) => {
+  if (itemStack?.typeId !== FAT_MAN) return;
+  cancelChargeTimer(source);
+
+  // Loading: a heavy mechanical clunk as the Mini-Nuke goes in.
+  playAt(source, "crossbow.loading.start", 0.6, 1.0);
+
+  // Fully loaded: a lock-in click so you know it's at full power.
+  const timer = system.runTimeout(() => {
+    chargeTimers.delete(source.id);
+    playAt(source, "crossbow.loading.end", 0.55, 1.0);
+    playAt(source, "random.click", 0.5, 0.8);
+  }, FULL_CHARGE_TICKS);
+  chargeTimers.set(source.id, timer);
+});
+
+world.afterEvents.itemStopUse.subscribe(({ itemStack, source }) => {
+  if (itemStack?.typeId === FAT_MAN) cancelChargeTimer(source);
+});
+
+world.afterEvents.itemReleaseUse.subscribe(({ itemStack, source }) => {
+  if (itemStack?.typeId !== FAT_MAN) return;
+  cancelChargeTimer(source);
+
+  try {
+    // Cut off the bow sound for everyone close enough to have heard it.
+    source.runCommand(`stopsound @a[r=48] ${BOW_SOUND}`);
+    source.runCommand("camerashake add @s 0.35 0.25 rotational");
+  } catch {}
+
+  // Launch: a deep thump, a rocket whoosh, and an echo rolling off.
+  playAt(source, "mob.ghast.fireball", 0.55, 2.0);
+  playAt(source, "firework.launch", 0.5, 2.0);
+  playAt(source, "thecoberto.effect.gun.echo", 0.8, 2.0);
+  muzzleBlast(source);
+});
+
+function cancelChargeTimer(player) {
+  const timer = chargeTimers.get(player.id);
+  if (timer === undefined) return;
+  system.clearRun(timer);
+  chargeTimers.delete(player.id);
+}
+
+// Plays a sound at the player so everyone nearby hears it.
+function playAt(player, sound, pitch, volume) {
+  try {
+    player.dimension.playSound(sound, player.location, { pitch, volume });
+  } catch {} // Player left or the chunk unloaded.
+}
+
+// Smoke and flame puffing out of the front of the launcher.
+function muzzleBlast(player) {
+  try {
+    const head = player.getHeadLocation();
+    const dir = player.getViewDirection();
+    for (let i = 0; i < 6; i++) {
+      const d = 1.2 + i * 0.25;
+      const at = {
+        x: head.x + dir.x * d + (Math.random() - 0.5) * 0.3,
+        y: head.y + dir.y * d - 0.2 + (Math.random() - 0.5) * 0.3,
+        z: head.z + dir.z * d + (Math.random() - 0.5) * 0.3,
+      };
+      player.dimension.spawnParticle("minecraft:basic_smoke_particle", at);
+      if (i < 3) player.dimension.spawnParticle("minecraft:basic_flame_particle", at);
+    }
+  } catch {}
+}
+
 // --- Detonation --------------------------------------------------------------
 
 world.afterEvents.projectileHitBlock.subscribe((event) => detonate(event));

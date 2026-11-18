@@ -1,0 +1,44 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    // Played while loading. Over the first second the launcher sinks back toward
+    // the player and starts to tremble; once fully loaded it shakes harder.
+    "animation.thecoberto.fat_man.charge": {
+      "loop": "hold_on_last_frame",
+      "animation_length": 1.0,
+      "bones": {
+        "rightitem": {
+          "position": [
+            "math.sin(query.life_time * 2290.0) * 0.12 * math.min(query.anim_time, 1.0)",
+            "math.cos(query.life_time * 1900.0) * 0.12 * math.min(query.anim_time, 1.0) - 0.6 * math.min(query.anim_time, 1.0)",
+            "-1.2 * math.min(query.anim_time, 1.0)"
+          ],
+          "rotation": [
+            "math.sin(query.life_time * 1500.0) * 1.5 * math.min(query.anim_time, 1.0)",
+            0,
+            0
+          ]
+        }
+      }
+    },
+    // Played once on firing: a sharp kick back and up, then settles.
+    "animation.thecoberto.fat_man.recoil": {
+      "loop": false,
+      "animation_length": 0.4,
+      "bones": {
+        "rightitem": {
+          "position": {
+            "0.0": [ 0, -0.6, -1.2 ],
+            "0.05": [ 0, 1.0, -4.0 ],
+            "0.4": { "post": [ 0, 0, 0 ], "lerp_mode": "catmullrom" }
+          },
+          "rotation": {
+            "0.0": [ 0, 0, 0 ],
+            "0.05": [ -25, 0, 0 ],
+            "0.4": { "post": [ 0, 0, 0 ], "lerp_mode": "catmullrom" }
+          }
+        }
+      }
+    }
+  }
+}
