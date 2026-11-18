@@ -23,15 +23,15 @@
       "animations": {
         "wield": "animation.player.bow_custom.first_person",
         "thierd": "animation.player.bow_custom",
-        "wield_first_person_pull": "animation.bow.wield_first_person_pull"
+        "charge": "animation.thecoberto.fat_man.charge",
+        "recoil": "animation.thecoberto.fat_man.recoil",
+        "fire_controller": "controller.animation.thecoberto.fat_man"
       },
       "scripts": {
         "animate": [
           { "wield": "c.is_first_person" },
           { "thierd": "!c.is_first_person" },
-          {
-            "wield_first_person_pull": "query.is_using_item && c.is_first_person && (temp.value = 0; temp.index = 0; loop(27, {temp.value = (query.is_item_name_any('slot.inventory', temp.index, 'new:tnt_arrow') || (query.is_item_name_any('slot.hotbar', temp.index, 'new:tnt_arrow'))); temp.value ? {return temp.value;}; temp.index = temp.index+1;}););"
-          }
+          "fire_controller"
         ]
       },
       "render_controllers": [ "controller.render.bow_custom" ]
