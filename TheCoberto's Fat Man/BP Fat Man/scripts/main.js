@@ -181,27 +181,43 @@ function burnEntities(dimension, center) {
   }
 }
 
-// Covers the ground around the blast in fire.
+// Covers the ground around the blast in fire. It waits a moment so the blast
+// doesn't snuff it out, then keeps re-lighting the same spots for a while,
+// because fire on grass, dirt or stone otherwise burns out in a second or two.
+const NAPALM_FIRE_DELAY_TICKS = 3;
+const NAPALM_RELIGHT_TICKS = 10;
+
 function spreadFire(dimension, center) {
   const cx = Math.floor(center.x);
   const cy = Math.floor(center.y);
   const cz = Math.floor(center.z);
   const r = NAPALM_FIRE_RADIUS;
 
+  const columns = [];
   for (let dx = -r; dx <= r; dx++) {
     for (let dz = -r; dz <= r; dz++) {
       if (dx * dx + dz * dz > r * r || Math.random() > NAPALM_FIRE_CHANCE) continue;
-      placeFireOnGround(dimension, cx + dx, cy, cz + dz);
+      columns.push({ x: cx + dx, z: cz + dz });
     }
+  }
+
+  const relights = Math.ceil((NAPALM_BURN_SECONDS * 20) / NAPALM_RELIGHT_TICKS);
+  for (let i = 0; i <= relights; i++) {
+    system.runTimeout(() => {
+      for (const { x, z } of columns) placeFireOnGround(dimension, x, cy, z);
+    }, NAPALM_FIRE_DELAY_TICKS + i * NAPALM_RELIGHT_TICKS);
   }
 }
 
-// Finds the ground near height y and puts fire on top of it.
+// Finds the ground near height y and puts fire on top of it. The blast may
+// have dug a crater, so it looks a little further down.
 function placeFireOnGround(dimension, x, y, z) {
   try {
-    for (let fy = y + 3; fy >= y - 4; fy--) {
+    for (let fy = y + 3; fy >= y - 6; fy--) {
       const block = dimension.getBlock({ x, y: fy, z });
-      if (!block?.isAir) continue;
+      if (!block) continue;
+      if (block.typeId === "minecraft:fire") return; // still burning
+      if (!block.isAir) continue;
       const below = block.below();
       if (below && !below.isAir && !below.isLiquid) {
         block.setType("minecraft:fire");
