@@ -1,16 +1,16 @@
 {
 	"format_version": 2,
 	"header": {
-		"name": "Rocket Launcher §7§l[1.3.1]",
+		"name": "Rocket Launcher §7§l[1.3.2]",
 		"description": "Adds a rocket launcher with Mini-Nukes and Napalm Bombs! \n§bMCBE 1.21.100+",
 		"uuid": "8eca0737-fc2a-4642-83d8-6f29fa093963",
-		"version": [ 1, 3, 1 ],
+		"version": [ 1, 3, 2 ],
 		"min_engine_version": [ 1, 21, 100 ]
 	},
 	"modules": [
 		{
 			"description": "Behavior",
-			"version": [ 1, 3, 1 ],
+			"version": [ 1, 3, 2 ],
 			"uuid": "da976c83-eed8-4333-ade6-2a9d0cf55260",
 			"type": "data"
 		},
@@ -20,13 +20,13 @@
 			"language": "javascript",
 			"entry": "scripts/main.js",
 			"uuid": "2e2e37cf-9d54-433c-86c5-ef67b932ec12",
-			"version": [ 1, 3, 1 ]
+			"version": [ 1, 3, 2 ]
 		}
 	],
 	"dependencies": [
 		{
 			"uuid": "dd49a291-7488-456d-96d7-be1387fbca76",
-			"version": [ 1, 3, 1 ]
+			"version": [ 1, 3, 2 ]
 		},
 		{
 			"module_name": "@minecraft/server",
