@@ -1,0 +1,15 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "thecoberto:napalm_bomb"
+		},
+		"tags": ["crafting_table"],
+		"pattern": ["NFN", "FTF", "NFN"],
+		"key": { "N": { "item": "minecraft:iron_nugget" }, "F": { "item": "minecraft:fire_charge" }, "T": { "item": "minecraft:tnt" } },
+		"result": {
+			"item": "thecoberto:napalm_bomb",
+			"count": 2
+		}
+	}
+}

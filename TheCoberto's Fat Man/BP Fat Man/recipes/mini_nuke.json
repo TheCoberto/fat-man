@@ -1,0 +1,15 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "thecoberto:mini_nuke"
+		},
+		"tags": ["crafting_table"],
+		"pattern": ["ITI", "TDT", "ITI"],
+		"key": { "I": { "item": "minecraft:iron_ingot" }, "T": { "item": "minecraft:tnt" }, "D": { "item": "minecraft:diamond" } },
+		"result": {
+			"item": "thecoberto:mini_nuke",
+			"count": 1
+		}
+	}
+}

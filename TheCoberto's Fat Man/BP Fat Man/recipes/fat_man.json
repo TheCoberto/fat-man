@@ -1,0 +1,15 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "thecoberto:fat_man"
+		},
+		"tags": ["crafting_table"],
+		"pattern": ["III", "TDR", "III"],
+		"key": { "I": { "item": "minecraft:iron_ingot" }, "T": { "item": "minecraft:tripwire_hook" }, "D": { "item": "minecraft:dispenser" }, "R": { "item": "minecraft:redstone" } },
+		"result": {
+			"item": "thecoberto:fat_man",
+			"count": 1
+		}
+	}
+}

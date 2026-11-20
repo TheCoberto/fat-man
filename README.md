@@ -13,6 +13,20 @@ Requires Minecraft Bedrock **1.21.100** or newer. No experiments needed.
 
 To choose which ammo to fire, hold it in your offhand. Otherwise the launcher uses whichever ammo it finds in your inventory.
 
+## Recipes
+
+All three are also in the creative inventory under Equipment.
+
+```
+Fat Man                Mini-Nuke              Napalm Bomb (makes 2)
+ I I I                  I T I                  N F N
+ H D R                  T X T                  F T F
+ I I I                  I T I                  N F N
+
+I = Iron Ingot, H = Tripwire Hook, D = Dispenser, R = Redstone, T = TNT,
+X = Diamond, N = Iron Nugget, F = Fire Charge
+```
+
 ## Settings
 
 Operators can run `/thecoberto:fatman` in chat to open the settings:
