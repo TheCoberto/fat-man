@@ -1,20 +1,23 @@
-# MCPEDL listing: Rocket Launcher
+# CurseForge listing: Rocket Launcher
 
-Post: not posted yet (new post, Add-Ons category)
-Images: promo/banner.png (thumbnail), promo/logo.png. Screenshots worth taking: the Mini-Nuke mushroom cloud, a Napalm fire.
-Needs before posting: a LootLabs link and a Google Drive file for the .mcaddon.
+Paste these into the CurseForge Authors Console. Once the project is approved, CurseForge syncs it to MCPEDL.
+
 Note: Coberto's Arsenal already includes everything here. Post both if you want; this one suits players who only want the launcher.
 
-## Title
-Rocket Launcher: Fat Man with Mini-Nukes and Napalm
+## Project
 
-## Short description
-A craftable Fat Man rocket launcher that fires Mini-Nukes with a mushroom cloud and Napalm Bombs that set everything on fire.
-
-## Introduction
-Some problems need a bigger solution. The Fat Man is a shoulder-mounted launcher that fires two kinds of ammo: a Mini-Nuke that leaves a crater and a mushroom cloud, and a Napalm Bomb that sets everything around it on fire. Server owners can switch off block damage and fire, so it's safe on shared worlds. No experiments needed.
+- **Name:** Rocket Launcher: Fat Man with Mini-Nukes and Napalm
+- **Slug:** `rocket-launcher` (new project, so any free slug works)
+- **Summary:** A craftable Fat Man rocket launcher that fires Mini-Nukes with a mushroom cloud and Napalm Bombs that set everything on fire.
+- **Class:** Minecraft Bedrock, Addons
+- **Project Distribution** (License section): allow third-party distribution, or it won't show on MCPEDL
+- **Logo:** promo/logo.png
+- **Gallery:** promo/banner.png titled `MCPEDL` (used as the MCPEDL thumbnail), plus screenshots: the Mini-Nuke mushroom cloud, a Napalm fire.
 
 ## Description
+
+Some problems need a bigger solution. The Fat Man is a shoulder-mounted launcher that fires two kinds of ammo: a Mini-Nuke that leaves a crater and a mushroom cloud, and a Napalm Bomb that sets everything around it on fire. Server owners can switch off block damage and fire, so it's safe on shared worlds. No experiments needed.
+
 **Ammo**
 - **Mini-Nuke**: one huge explosion (radius 20) with a mushroom cloud. Never starts fires.
 - **Napalm Bomb**: a small blast (radius 4), then sets every mob and player within 8 blocks on fire and covers the ground in flames for about 10 seconds.
@@ -30,23 +33,34 @@ Hold the ammo you want in your offhand to choose what to fire. Otherwise the lau
 
 Operators run `/thecoberto:fatman` to choose whether explosions break blocks and whether Napalm Bombs start fires. Napalm still burns mobs and players either way. Settings are saved in the world and announced in chat.
 
-## Latest changes (1.4.0)
-- Added crafting recipes for the Fat Man, Mini-Nuke and Napalm Bomb
+### Installation
 
-1.3.3
-- Redrew the Mini-Nuke as a finned bomb
-- The Fat Man's loading animation shows the Mini-Nuke sliding into the muzzle
-
-1.3.1
-- Napalm Bombs set the ground on fire properly, and the flames keep burning for about 10 seconds
-
-## Installation
 1. Download the .mcaddon and open it. Minecraft imports both packs.
 2. Create or edit a world and turn on the Rocket Launcher behavior pack (the resource pack is added with it). No experiments needed.
 3. Don't use it in the same world as Coberto's Arsenal, which already includes the Fat Man.
 
-## Supported Minecraft versions
+### Supported Minecraft versions
+
 1.21.100 and newer
 
-## Downloads
-LootLabs Download (support me!): (add link)
+### Changelog
+
+**1.4.0**
+- Added crafting recipes for the Fat Man, Mini-Nuke and Napalm Bomb
+
+**1.3.3**
+- Redrew the Mini-Nuke as a finned bomb
+- The Fat Man's loading animation shows the Mini-Nuke sliding into the muzzle
+
+**1.3.1**
+- Napalm Bombs set the ground on fire properly, and the flames keep burning for about 10 seconds
+
+## File
+
+- **File:** `builds\Rocket-Launcher-1.4.0.mcaddon`
+- **Display name:** Rocket Launcher 1.4.0
+- **Release type:** Release
+- **Game versions:** 1.21.100 and newer
+- **Changelog:**
+
+- Added crafting recipes for the Fat Man, Mini-Nuke and Napalm Bomb
