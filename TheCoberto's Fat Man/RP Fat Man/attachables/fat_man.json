@@ -28,13 +28,16 @@
         "fire_controller": "controller.animation.thecoberto.fat_man"
       },
       "scripts": {
+        "pre_animation": [
+          "variable.draw_ticks = query.main_hand_item_use_duration > 0.0 ? query.main_hand_item_max_duration - query.main_hand_item_use_duration : -1.0;"
+        ],
         "animate": [
           { "wield": "c.is_first_person" },
           { "thierd": "!c.is_first_person" },
           "fire_controller"
         ]
       },
-      "render_controllers": [ "controller.render.bow_custom" ]
+      "render_controllers": [ "controller.render.thecoberto.custom_bow" ]
     }
   }
 }
