@@ -1,0 +1,21 @@
+{
+  "format_version": "1.10",
+  "render_controllers": {
+    // Like the vanilla bow's, but picks the draw frame itself: query.get_animation_frame
+    // only works for minecraft:bow. Frames change at the same points as vanilla
+    // (13 and 18 ticks into the draw).
+    "controller.render.thecoberto.custom_bow": {
+      "arrays": {
+        "textures": {
+          "array.frames": [ "texture.default", "texture.bow_pulling_0", "texture.bow_pulling_1", "texture.bow_pulling_2" ]
+        },
+        "geometries": {
+          "array.frames": [ "geometry.default", "geometry.bow_pulling_0", "geometry.bow_pulling_1", "geometry.bow_pulling_2" ]
+        }
+      },
+      "geometry": "array.frames[variable.draw_ticks < 0.0 ? 0 : (variable.draw_ticks < 13.0 ? 1 : (variable.draw_ticks < 18.0 ? 2 : 3))]",
+      "materials": [ { "*": "variable.is_enchanted ? material.enchanted : material.default" } ],
+      "textures": [ "array.frames[variable.draw_ticks < 0.0 ? 0 : (variable.draw_ticks < 13.0 ? 1 : (variable.draw_ticks < 18.0 ? 2 : 3))]", "texture.enchanted" ]
+    }
+  }
+}
