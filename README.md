@@ -43,3 +43,7 @@ Use `package.ps1` from [bedrock-tools](https://github.com/TheCoberto/bedrock-too
 ```powershell
 powershell -ExecutionPolicy Bypass -File ..\bedrock-tools\package.ps1
 ```
+
+## Shared with Coberto's Arsenal
+
+Coberto's Arsenal includes the Fat Man. Edit its files here; Arsenal copies them with `..edrock-tools\sync.ps1` (its `sync.json` lists them, including `scripts/main.js` as `scripts/fat_man.js`).
